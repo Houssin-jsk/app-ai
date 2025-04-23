@@ -4,16 +4,13 @@ import pickle
 import os
 import pickle
 
-# تحديد المسار ديال الملفات بناءً على موقع السكريبت
 base_path = os.path.dirname(__file__)
 model_path = os.path.join(base_path, "random_forest_model.pkl")
 feature_order_path = os.path.join(base_path, "feature_order.pkl")
 
-# تحميل الموديل
 with open(model_path, "rb") as file:
     model = pickle.load(file)
 
-# تحميل ترتيب الأعمدة
 with open(feature_order_path, 'rb') as f:
     feature_order = pickle.load(f)
 
