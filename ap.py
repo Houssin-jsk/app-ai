@@ -78,7 +78,7 @@ if st.button("Predict"):
         Active: {is_active_text}  
         Salary: {salary}  
 
-        **Prediction:** {"The customer is **likely** to churn." if result == 1 else "The customer is **not likely** to churn."}
+        **Prediction:** {"The customer is **not likely** to churn." if result == 1 else "The customer is **likely** to churn."}
         ----------------------------------------
         """
         st.session_state.history.append(summary)
