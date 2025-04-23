@@ -1,14 +1,22 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os
+import pickle
 
-# Charger le modèle
-with open("random_forest_model.pkl", "rb") as file:
+# تحديد المسار ديال الملفات بناءً على موقع السكريبت
+base_path = os.path.dirname(__file__)
+model_path = os.path.join(base_path, "random_forest_model.pkl")
+feature_order_path = os.path.join(base_path, "feature_order.pkl")
+
+# تحميل الموديل
+with open(model_path, "rb") as file:
     model = pickle.load(file)
 
-# Charger l'ordre des colonnes
-with open('feature_order.pkl', 'rb') as f:
+# تحميل ترتيب الأعمدة
+with open(feature_order_path, 'rb') as f:
     feature_order = pickle.load(f)
+
 
 # Titre de l'application
 st.title("Churn Prediction App")
