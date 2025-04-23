@@ -2,18 +2,19 @@ import streamlit as st
 import pandas as pd
 import pickle
 import os
-import pickle
 
+# Paths dyal lmodel w feature order
 base_path = os.path.dirname(__file__)
 model_path = os.path.join(base_path, "random_forest_model.pkl")
 feature_order_path = os.path.join(base_path, "feature_order.pkl")
 
+# Load lmodel
 with open(model_path, "rb") as file:
     model = pickle.load(file)
 
+# Load l'ordre dyal les features
 with open(feature_order_path, 'rb') as f:
     feature_order = pickle.load(f)
-
 
 # Titre de l'application
 st.title("Churn Prediction App")
@@ -50,10 +51,15 @@ if st.button("Predict"):
         df_input = pd.DataFrame([[credit_score, geo_germany, geo_spain, gender_encoded, age, tenure, balance,
                                   num_products, has_cr_card, is_active, salary]],
                                 columns=feature_order)
+
+        # Afficher un toast
         st.toast("Prédiction terminée ✅")
+
+        # Progress bar
         progress = st.progress(0)
         for i in range(100):
-            progress.progress(i + 1)
+            progress.progress(i + 1)
+
         # Faire la prédiction
         result = model.predict(df_input)[0]
 
