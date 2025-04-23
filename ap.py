@@ -50,7 +50,10 @@ if st.button("Predict"):
         df_input = pd.DataFrame([[credit_score, geo_germany, geo_spain, gender_encoded, age, tenure, balance,
                                   num_products, has_cr_card, is_active, salary]],
                                 columns=feature_order)
-
+        st.toast("Prédiction terminée ✅")
+        progress = st.progress(0)
+        for i in range(100):
+            progress.progress(i + 1)
         # Faire la prédiction
         result = model.predict(df_input)[0]
 
